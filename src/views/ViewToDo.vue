@@ -2,7 +2,7 @@
   <el-row :gutter="20">
     <el-col :span="12" :offset="6">
       <el-card class="box-card">
-        <div slot="header" class="clearfix">
+        <div class="clearfix">
           <h4>{{ todo.title }}</h4>
         </div>
         <el-row :gutter="24">
@@ -31,7 +31,12 @@ export default {
   props: ['id'],
   data () {
     return {
-      todo: null,
+      todo: {
+        title: String,
+        description: String,
+        completed: Boolean,
+        create_ago: String
+      },
       url: process.env.VUE_APP_TODOS_URL
     }
   },

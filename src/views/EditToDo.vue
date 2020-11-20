@@ -1,19 +1,21 @@
 <template>
-<el-form :model="todo" :rules="rules" ref="ruleForm" label-width="120px" class="demo-ruleForm">
-  <el-form-item label="Título" prop="title">
+<el-card class="box-card">
+<el-form :model="todo" ref="ruleForm" label-width="120px" class="demo-ruleForm">
+  <el-form-item label="Título" prop="todo.title">
     <el-input v-model="todo.title"></el-input>
   </el-form-item>
-<el-form-item label="Instant delivery" prop="delivery">
+  <el-form-item label="Estado" prop="todo.completed">
     <el-switch v-model="todo.completed"></el-switch>
   </el-form-item>
-<el-form-item label="Activity form" prop="desc">
+  <el-form-item label="Descripción" prop="todo.description">
     <el-input type="textarea" v-model="todo.description"></el-input>
   </el-form-item>
-<el-form-item>
+  <el-form-item>
     <el-button type="primary" @click="submitForm('ruleForm')">Create</el-button>
     <el-button @click="resetForm('ruleForm')">Reset</el-button>
   </el-form-item>
 </el-form>
+</el-card>
 </template>
 <script>
 import axios from 'axios'
@@ -29,19 +31,7 @@ export default {
         completed: Boolean,
         create_ago: String
       },
-      url: process.env.VUE_APP_TODOS_URL,
-      rules: {
-        title: [
-          { required: true, message: 'Please input your name.', trigger: 'blur' },
-          { min: 2, max: 10, message: 'Length of 2 to 10 characters', trigger: 'blur' },
-          {
-            required: true,
-            pattern: /^[\u4e00-\u9fa5_a-zA-Z0-9.·-]+$/,
-            message: 'Name does not support special characters.',
-            trigger: 'blur'
-          }
-        ]
-      }
+      url: process.env.VUE_APP_TODOS_URL
     }
   },
   mounted () {
