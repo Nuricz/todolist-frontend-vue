@@ -42,13 +42,14 @@ export default {
 
   methods: {
     createNewToDo () {
+      this.errors = []
       if (!this.nextName) {
         this.errors.push('Debe escribir un título')
       }
       if (!this.nextDescrip) {
         this.errors.push('Debe escribir una descripción')
       }
-      if (this.errors.length === 0) {
+      if (this.nextName && this.nextDescrip) {
         this.$set(this.todo, 'title', this.nextName)
         this.todo.description = this.nextDescrip
         this.addNewToDo(this.todo)
